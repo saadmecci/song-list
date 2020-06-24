@@ -21,4 +21,4 @@ This is what you will need to install the software and here is how to install it
 ## This application is built with
 * [React](https://reactjs.org) - The library used
 * [React Bootstrap](https://react-bootstrap.github.io) - Bootstrap framework built for React
-* Backend service built with [Node] (https://nodejs.org/en/) and [Express] (https://expressjs.com).
+* Backend service built with [Node](https://nodejs.org/en/) and [Express](https://expressjs.com).

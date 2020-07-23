@@ -77,7 +77,7 @@ const SongResultsDisplayer = (props) => {
         }
     }
 
-    return(
+    return (
         <SongCardContainer>
             {props.data.map((item, index) => 
                 <SongCard key={index}>
@@ -95,8 +95,14 @@ const SongResultsDisplayer = (props) => {
                         <PreviewButton onClick={() => playAudio(item.preview_url)}>
                             &#9658;Preview
                         </PreviewButton>
-                        <SaveButton>
-                            &#43;Add to List
+                        <SaveButton 
+                            onClick={() => props.addSong(
+                                item.album.images[0].url, 
+                                item.name, 
+                                item.artists[0].name, 
+                                item.album.name
+                            )}>
+                            &#43;Add to Playlist
                         </SaveButton>
                     </ButtonContainer>
                 </SongCard>

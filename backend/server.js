@@ -1,7 +1,8 @@
 import express from 'express';
 import path from 'path';
-import playlist from './routes/playlist';
 import spotifyToken from './routes/spotifyToken';
+import addToPlaylist from './routes/addToPlaylist';
+import viewPlaylist from './routes/viewPlaylist';
 const port = process.env.PORT || 8000;
 
 const app = express();
@@ -17,6 +18,8 @@ app.get('/', function (req, res) {
 
 app.listen(port, function() { console.log("server is running on", port)});
 
-app.post('/add-song', (req, res) => playlist(req, res));
+app.get('/token', (req, res) => spotifyToken(req, res));
 
-app.get('/spotifyToken', (req, res) => spotifyToken(req, res));
+app.post('/add-song', (req, res) => addToPlaylist(req, res));
+
+app.get('/playlist', (req, res) => viewPlaylist(req ,res));

@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const dbUrl = 'mongodb://127.0.0.1:27017';
 const dbName = 'dev';
 
-const playlist = ({body}, res) => {
+const addToPlaylist = ({body}, res) => {
     MongoClient.connect(
     dbUrl, 
     {useNewUrlParser: true, useUnifiedTopology: true}, 
@@ -15,8 +15,12 @@ const playlist = ({body}, res) => {
         }
         const db = client.db(dbName);
         const songCollection = db.collection("playlist");
-        const songData = {name: body.name, 
-            something: body.something};
+        const songData = {
+            imageUrl: body.imageUrl, 
+            songName: body.name,
+            songArtist: body.artist,
+            albumName: body.album
+        };
 
         songCollection.insertOne(
             songData,
@@ -26,10 +30,15 @@ const playlist = ({body}, res) => {
                         status: 500,
                         message: "Cannot add song information to database"
                     });
+                } else {
+                    res.json({
+                        status: 200,
+                        message: "Sucessfully added song to database"
+                    });
                 }
             }
         );
     });
 };
 
-export default playlist;
+export default addToPlaylist;
